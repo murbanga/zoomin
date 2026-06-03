@@ -109,7 +109,6 @@ namespace ZoomIn
 
                 g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
                 g.DrawImage(picture, pictureBox.ClientRectangle);
-                //g.DrawRectangle(
             }
         }
 
@@ -259,6 +258,18 @@ namespace ZoomIn
         private void ZoomIn_Resize(object sender, EventArgs e)
         {
             updatePicture();
+        }
+
+        private void toolSave_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog dlg = new SaveFileDialog();
+            dlg.AddExtension = true;
+            dlg.Title = "Save zoomed image";
+            dlg.DefaultExt = "png";
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                picture.Save(dlg.FileName, ImageFormat.Png);
+            }
         }
     }
 }
